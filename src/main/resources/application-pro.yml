@@ -1,0 +1,62 @@
+# 开发环境
+
+spring:
+  mvc:
+    format:
+      date: dd/MM/yyyy
+
+  # 数据库
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/yldisk?serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #druid 数据源专有配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+    #配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
+    #如果允许时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+    #则导入 log4j 依赖即可，Maven 地址：https://mvnrepository.com/artifact/log4j/log4j
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+
+  #  thymeleaf的非严格html的检查
+  thymeleaf:
+    mode: HTML
+  #使用重写后文件上传解析，以添加上传进度监听功能
+  #设置一次请求中最大传输文件大小
+  #设置允许上传的文件的大小
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 1024MB
+      max-file-size: 1024MB
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.yl.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+#http:
+#  port: 80
+#server:
+#  port: 443
+#  ssl:
+#    key-store: classpath:
+#    key-store-password:
+#    keyStoreType:

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yl.mapper.OriginFileMapper">
+    <select id="queryById" resultType="originFile">
+        select * from origin_file where origin_file_id=#{originFileId}
+    </select>
+    <select id="queryByURL" resultType="originFile">
+        select * from origin_file where file_url=#{fileUrl}
+    </select>
+    <select id="queryByMD5" resultType="originFile">
+        select * from origin_file where file_md5=#{fileMd5}
+    </select>
+
+    <insert id="addOriginFile" parameterType="originFile">
+        insert into origin_file (file_md5,file_size,file_type,file_url,file_count,file_status,create_time,modify_time)
+        values (#{fileMd5},#{fileSize},#{fileType},#{fileUrl},#{fileCount},#{fileStatus},#{createTime},#{modifyTime})
+    </insert>
+    
+    <update id="updateOriginFile" parameterType="originFile">
+        update origin_file
+        <set>
+            <if test="fileSize!=null">
+                ,file_size=#{fileSize}
+            </if>
+            <if test="fileType!=null">
+                ,file_type=#{fileType}
+            </if>
+            <if test="fileUrl!=null">
+                ,file_url=#{fileUrl}
+            </if>
+            <if test="fileCount!=0">
+                ,file_count=#{fileCount}
+            </if>
+            <if test="fileStatus!=0">
+                ,file_status=#{fileStatus}
+            </if>
+            <if test="createTime!=null">
+                ,create_time=#{createTime}
+            </if>
+            <if test="modifyTime!=null">
+                ,modify_time=#{modifyTime}
+            </if>
+        </set>
+        where origin_file_id=#{originFileId}
+    </update>
+
+</mapper>
