@@ -8,6 +8,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 public class UserRealm extends AuthorizingRealm {
     @Autowired
     UserMapper userMapper;
@@ -26,6 +27,8 @@ public class UserRealm extends AuthorizingRealm {
 
 
         User user = userMapper.queryByUsername(userToken.getUsername());
+
+
         if (user==null) {return null;}
 
         return new SimpleAuthenticationInfo(user,user.getPassword(),"");
