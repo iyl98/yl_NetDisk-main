@@ -3,15 +3,10 @@ package com.yl.config;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.SessionTrackingMode;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +22,7 @@ public class ShiroConfig {
 //        perms:拥有对某个资源的权限才能访问;
 //        role:拥有某个角色权限才能访问
         Map<String,String> filterChainDefinitionMap =new HashMap<>();
-        filterChainDefinitionMap.put("/user/*","anon");
+        filterChainDefinitionMap.put("/user/*","authc");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         bean.setLoginUrl("/toLogin");
 

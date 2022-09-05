@@ -3,7 +3,6 @@ package com.yl.controller;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.FileTypeUtil;
 import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.StrUtil;
 import com.yl.mapper.OriginFileMapper;
 import com.yl.mapper.UserFileMapper;
 import com.yl.pojo.OriginFile;

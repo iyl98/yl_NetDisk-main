@@ -1,6 +1,5 @@
 package com.yl.controller;
 
-import cn.hutool.http.HttpRequest;
 import com.yl.mapper.OriginFileMapper;
 import com.yl.pojo.OriginFile;
 import org.springframework.beans.factory.annotation.Autowired;
