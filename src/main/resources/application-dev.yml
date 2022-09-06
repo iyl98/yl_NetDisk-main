@@ -60,6 +60,8 @@ mybatis:
     map-underscore-to-camel-case: true
 server:
   port: 8080
+
+  # 解决http请求头解析的错误
   tomcat:
     relaxed-path-chars:
     - '|'
