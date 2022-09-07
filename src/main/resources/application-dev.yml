@@ -36,6 +36,8 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
+    usePingMethod: false
+
 
   #  thymeleaf的非严格html的检查
   thymeleaf:

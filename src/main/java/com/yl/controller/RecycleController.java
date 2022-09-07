@@ -42,7 +42,7 @@ public class RecycleController {
         userFile.setModifyTime(now);
         userFile.setFileStatus(2);
         userFileMapper.updateFile(userFile);
-        if(num == 0){
+        if(num == null){
             return "redirect:/user/home";
         }
         return "redirect:/user/home/"+num;
@@ -66,7 +66,7 @@ public class RecycleController {
         userFolder.setFolderStatus(2);
 
         userFolderMapper.updateFolder(userFolder);
-        if(num == 0){
+        if(num == null){
             return "redirect:/user/home";
         }
         return "redirect:/user/home/"+num;

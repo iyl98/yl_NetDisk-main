@@ -1,5 +1,6 @@
 package com.yl.config;
 
+import org.apache.shiro.mgt.RememberMeManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
@@ -35,7 +36,9 @@ public class ShiroConfig {
         manager.setRealm(userRealm);
 
         manager.setSessionManager(sessionManager);
-        manager.setRememberMeManager(manager.getRememberMeManager());
+
+        // RememberMeManager存在安全漏洞
+//        manager.setRememberMeManager(manager.getRememberMeManager());
         return manager;
     }
 

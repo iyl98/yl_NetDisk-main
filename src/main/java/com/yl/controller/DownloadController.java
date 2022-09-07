@@ -45,8 +45,8 @@ public class DownloadController {
 
         //3.写出文件 输出流
         OutputStream out = response.getOutputStream();
-
-        byte[] buff = new byte[1024];
+        
+        byte[] buff = new byte[8192];
         int index = 0;
 
         //4.执行写出操作
