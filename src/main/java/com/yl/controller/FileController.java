@@ -1,5 +1,7 @@
 package com.yl.controller;
 
+import cn.hutool.core.lang.Assert;
+import com.mysql.cj.util.StringUtils;
 import com.yl.mapper.NoticeUpdateMapper;
 import com.yl.mapper.UserFileMapper;
 import com.yl.mapper.UserFolderMapper;
@@ -48,7 +50,7 @@ public class FileController {
         List<UserFile> userFiles = userFileMapper.queryByUserId(user.getUserId());
 
         //判断当前目录下是否有文件，计算大小存入集合
-        if(userFiles.size() >= 1){
+        if(userFiles != null && !userFiles.isEmpty()){
             Map<Integer, String> fileSize = new HashMap<>();
             for (UserFile userfile: userFiles) {
                 //查找文件大小并转换为适用的单位
@@ -95,7 +97,7 @@ public class FileController {
         List<UserFile> userFiles = userFileMapper.queryByParentId(user.getUserId(), parentId);
         model.addAttribute("userFiles",userFiles);
         model.addAttribute("userFolders",userFolders);
-        if(userFiles.size() >= 1){
+        if(userFiles != null && !userFiles.isEmpty()){
             Map<Integer, String> fileSize = new HashMap<>();
             for (UserFile userFile: userFiles) {
                 fileSize.put(userFile.getFileId(),FileSizeHelper.getHumanReadableFileSize(userFile.getFileSize()));
@@ -132,7 +134,7 @@ public class FileController {
         }else {
             List<UserFolder> userFolders = userFolderMapper.queryByFolderName(user.getUserId(), fileName);
             List<UserFile> userFiles = userFileMapper.queryByFileName(user.getUserId(), fileName);
-            if(userFiles.size() >= 1){
+            if(userFiles != null && !userFiles.isEmpty()){
                 Map<Integer, String> fileSize = new HashMap<>();
                 for (UserFile userFile: userFiles) {
                     fileSize.put(userFile.getFileId(),FileSizeHelper.getHumanReadableFileSize(userFile.getFileSize()));
@@ -169,7 +171,7 @@ public class FileController {
             System.out.println("图片分区无数据");
         }
         model.addAttribute("userFiles",userFiles);
-        if(userFiles.size() >= 1){
+        if(userFiles != null && !userFiles.isEmpty()){
             Map<Integer, String> fileSize = new HashMap<>();
             for (UserFile userFile: userFiles) {
                 fileSize.put(userFile.getFileId(), FileSizeHelper.getHumanReadableFileSize(userFile.getFileSize()));
@@ -195,7 +197,7 @@ public class FileController {
             System.out.println("文档分区无数据");
         }
         model.addAttribute("userFiles",userFiles);
-        if(userFiles.size() >= 1){
+        if(userFiles != null && !userFiles.isEmpty()){
             Map<Integer, String> fileSize = new HashMap<>();
             for (UserFile userFile: userFiles) {
                 fileSize.put(userFile.getFileId(), FileSizeHelper.getHumanReadableFileSize(userFile.getFileSize()));
@@ -221,7 +223,7 @@ public class FileController {
             System.out.println("视频分区无数据");
         }
         model.addAttribute("userFiles",userFiles);
-        if(userFiles.size() >= 1){
+        if(userFiles != null && !userFiles.isEmpty()){
             Map<Integer, String> fileSize = new HashMap<>();
             for (UserFile userFile: userFiles) {
                 fileSize.put(userFile.getFileId(), FileSizeHelper.getHumanReadableFileSize(userFile.getFileSize()));
@@ -247,7 +249,7 @@ public class FileController {
             System.out.println("音乐分区无数据");
         }
         model.addAttribute("userFiles",userFiles);
-        if(userFiles.size() >= 1){
+        if(userFiles != null && !userFiles.isEmpty()){
             Map<Integer, String> fileSize = new HashMap<>();
             for (UserFile userFile: userFiles) {
                 fileSize.put(userFile.getFileId(), FileSizeHelper.getHumanReadableFileSize(userFile.getFileSize()));
@@ -273,7 +275,7 @@ public class FileController {
             System.out.println("压缩文件分区无数据");
         }
         model.addAttribute("userFiles",userFiles);
-        if(userFiles.size() >= 1){
+        if(userFiles != null && !userFiles.isEmpty()){
             Map<Integer, String> fileSize = new HashMap<>();
             for (UserFile userFile: userFiles) {
                 fileSize.put(userFile.getFileId(), FileSizeHelper.getHumanReadableFileSize(userFile.getFileSize()));
@@ -304,7 +306,7 @@ public class FileController {
 
         model.addAttribute("userFiles",userFiles);
         model.addAttribute("userFolders",userFolders);
-        if(userFiles.size() >= 1){
+        if(userFiles != null && !userFiles.isEmpty()){
             Map<Integer, String> fileSize = new HashMap<>();
             for (UserFile userFile: userFiles) {
                 fileSize.put(userFile.getFileId(), FileSizeHelper.getHumanReadableFileSize(userFile.getFileSize()));

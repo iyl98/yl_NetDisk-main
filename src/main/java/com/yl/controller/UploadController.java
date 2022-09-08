@@ -3,6 +3,7 @@ package com.yl.controller;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.FileTypeUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.StrUtil;
 import com.yl.mapper.OriginFileMapper;
 import com.yl.mapper.UserFileMapper;
 import com.yl.pojo.OriginFile;
@@ -142,7 +143,7 @@ public class UploadController {
 
             int winSep = filename.lastIndexOf("\\");
 
-            int pos = (winSep > unixSep ? winSep:unixSep);
+            int pos = (Math.max(winSep, unixSep));
             if(pos != -1){
                 filename = filename.substring(pos+1);
             }

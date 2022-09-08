@@ -89,7 +89,7 @@ public class ShareController {
         model.addAttribute("userFiles",userFiles);
         model.addAttribute("userFolders", userFolders);
 
-        if(userFiles.size() >= 1){
+        if(userFiles != null && !userFiles.isEmpty()){
             Map<Integer, String> fileSize = new HashMap<>();
             for (UserFile userFile: userFiles) {
                 fileSize.put(userFile.getFileId(), FileSizeHelper.getHumanReadableFileSize(userFile.getFileSize()));

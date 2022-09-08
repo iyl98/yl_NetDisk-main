@@ -106,7 +106,7 @@ public class UserController {
 //            model.addAttribute("msg", "验证码错误");
 //            return "regist";
 //        }
-        if (username != null && !"".equals(username)) {
+        if (!"".equals(username)) {
             if (userMapper.queryByUsername(username) == null) {
                 userMapper.addUser(username, password, phone);
                 Subject subject = SecurityUtils.getSubject();
