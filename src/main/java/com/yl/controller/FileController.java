@@ -162,7 +162,12 @@ public class FileController {
     @RequestMapping("/user/home/photos")
     public String queryPhotos(HttpSession session, Model model){
         User user = (User) session.getAttribute("user");
-        List<UserFile> userFiles = userFileMapper.queryByFileTypePhoto(user.getUserId());
+        List<UserFile> userFiles = null;
+        try {
+            userFiles = userFileMapper.queryByFileTypePhoto(user.getUserId());
+        } catch (Exception e) {
+            System.out.println("图片分区无数据");
+        }
         model.addAttribute("userFiles",userFiles);
         if(userFiles.size() >= 1){
             Map<Integer, String> fileSize = new HashMap<>();
@@ -183,7 +188,12 @@ public class FileController {
     @RequestMapping("/user/home/document")
     public String queryDocument(HttpSession session, Model model){
         User user = (User) session.getAttribute("user");
-        List<UserFile> userFiles = userFileMapper.queryByFileTypeDocument(user.getUserId());
+        List<UserFile> userFiles = null;
+        try {
+            userFiles = userFileMapper.queryByFileTypeDocument(user.getUserId());
+        } catch (Exception e) {
+            System.out.println("文档分区无数据");
+        }
         model.addAttribute("userFiles",userFiles);
         if(userFiles.size() >= 1){
             Map<Integer, String> fileSize = new HashMap<>();
@@ -204,7 +214,12 @@ public class FileController {
     @RequestMapping("/user/home/video")
     public String queryVideo(HttpSession session, Model model){
         User user = (User) session.getAttribute("user");
-        List<UserFile> userFiles = userFileMapper.queryByFileTypeVideo(user.getUserId());
+        List<UserFile> userFiles = null;
+        try {
+            userFiles = userFileMapper.queryByFileTypeVideo(user.getUserId());
+        } catch (Exception e) {
+            System.out.println("视频分区无数据");
+        }
         model.addAttribute("userFiles",userFiles);
         if(userFiles.size() >= 1){
             Map<Integer, String> fileSize = new HashMap<>();
@@ -225,7 +240,12 @@ public class FileController {
     @RequestMapping("/user/home/music")
     public String queryMusic(HttpSession session, Model model){
         User user = (User) session.getAttribute("user");
-        List<UserFile> userFiles = userFileMapper.queryByFileTypeMusic(user.getUserId());
+        List<UserFile> userFiles = null;
+        try {
+            userFiles = userFileMapper.queryByFileTypeMusic(user.getUserId());
+        } catch (Exception e) {
+            System.out.println("音乐分区无数据");
+        }
         model.addAttribute("userFiles",userFiles);
         if(userFiles.size() >= 1){
             Map<Integer, String> fileSize = new HashMap<>();
@@ -246,7 +266,12 @@ public class FileController {
     @RequestMapping("/user/home/compressed")
     public String queryCompressedFile(HttpSession session, Model model){
         User user = (User) session.getAttribute("user");
-        List<UserFile> userFiles = userFileMapper.queryByFileTypeCompressedFile(user.getUserId());
+        List<UserFile> userFiles = null;
+        try {
+            userFiles = userFileMapper.queryByFileTypeCompressedFile(user.getUserId());
+        } catch (Exception e) {
+            System.out.println("压缩文件分区无数据");
+        }
         model.addAttribute("userFiles",userFiles);
         if(userFiles.size() >= 1){
             Map<Integer, String> fileSize = new HashMap<>();
@@ -267,8 +292,16 @@ public class FileController {
     @RequestMapping("/user/home/recycle")
     public String queryRecycle(HttpSession session, Model model){
         User user = (User) session.getAttribute("user");
-        List<UserFile> userFiles = userFileMapper.queryRecycleFileByUserId(user.getUserId());
-        List<UserFolder> userFolders = userFolderMapper.queryRecycleFolderByUserId(user.getUserId());
+
+        List<UserFile> userFiles = null;
+        List<UserFolder> userFolders = null;
+        try {
+            userFiles = userFileMapper.queryRecycleFileByUserId(user.getUserId());
+            userFolders = userFolderMapper.queryRecycleFolderByUserId(user.getUserId());
+        } catch (Exception e) {
+            System.out.println("回收站分区无数据");
+        }
+
         model.addAttribute("userFiles",userFiles);
         model.addAttribute("userFolders",userFolders);
         if(userFiles.size() >= 1){
